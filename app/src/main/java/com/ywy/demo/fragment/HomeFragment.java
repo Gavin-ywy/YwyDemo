@@ -14,7 +14,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.ywy.demo.R;
 import com.ywy.demo.activity.LanguageSwitchActivity;
-import com.ywy.demo.alipay.AliPayActivity;
 import com.ywy.demo.mvp.MvpActivity;
 import com.ywy.demo.activity.TextureViewActivity;
 import com.ywy.demo.base.BaseFragment;
@@ -27,7 +26,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout mSwipeLinear;
     private Button mTextureView;
     private Button mTextMvp;
-    private Button mALiPay;
     private Button mSwitchLanguage;
     //private XRecyclerView recycler_view
 
@@ -72,8 +70,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mTextureView.setOnClickListener(this);
         mTextMvp = mParentView.findViewById(R.id.home_mvp);
         mTextMvp.setOnClickListener(this);
-        mALiPay = mParentView.findViewById(R.id.home_alipay);
-        mALiPay.setOnClickListener(this);
         mSwitchLanguage = mParentView.findViewById(R.id.home_switch_language);
         mSwitchLanguage.setOnClickListener(this);
     }
@@ -86,9 +82,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.home_mvp:
                 startActivity(new Intent(getActivity(), MvpActivity.class));
-                break;
-            case R.id.home_alipay:
-                startActivity(new Intent(getActivity(), AliPayActivity.class));
                 break;
             case R.id.home_switch_language:
                 startActivity(new Intent(getActivity(), LanguageSwitchActivity.class));
