@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="color_white">#ffffff</color>
+    <color name="color_black">#000000</color>
+    <drawable name="main_tab_color_selected">#019daa</drawable>
+    <drawable name="main_tab_color_normal">#000000</drawable>
+
+    <color name="refresh_color1">#f123ff</color>
+    <color name="refresh_color2">#1234df</color>
+    <color name="refresh_color3">#123456</color>
+    <color name="refresh_color4">#fff110</color>
+    <color name="refresh_color5">#00ff00</color>
+    <color name="refresh_color6">#120000</color>
+    <color name="refresh_color7">#f0000f</color>
+    <color name="refresh_color8">#0003ff</color>
+    <color name="refresh_color9">#12ffa0</color>
+    <color name="refresh_color10">#eeff00aa</color>
+
+</resources>

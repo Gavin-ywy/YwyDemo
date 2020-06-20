@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">YwyDemo</string>
+
+    <string name="code_success">发送成功</string>
+    <string name="code_cancel">发送取消</string>
+    <string name="code_login_cancel">取消微信登录</string>
+    <string name="code_shared_cancel">取消微信分享</string>
+    <string name="code_deny">发送被拒绝</string>
+    <string name="code_unsupported">不支持错误</string>
+    <string name="code_unknown">发送返回</string>
+
+    <!--AliPay-->
+    <string name="confirm">确定</string>
+    <string name="error_missing_appid_rsa_private">错误: 需要配置 AliPay 中的 APPID 和 RSA_PRIVATE</string>
+    <string name="pay_success">支付成功:</string>
+    <string name="pay_failed">支付失败:</string>
+    <string name="auth_success">授权成功:</string>
+    <string name="auth_failed">授权失败:</string>
+    <string name="error_auth_missing_partner_appid_rsa_private_target_id">错误: 需要配置PARTNER |APP_ID| RSA_PRIVATE| TARGET_ID</string>
+
+    <string name="language_switch">Chinese</string>
+    <string name="am_time">AM</string>
+    <string name="pm_time">PM</string>
+    <string name="switch_language">switch_language</string>
+
+</resources>
