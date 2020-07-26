@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InviteFragment extends BaseFragment {
-    private static final String TAG = "Invite";
+    private static final String TAG = InviteFragment.class.getSimpleName();
     private View mParentView;
     private XRecyclerView mRecyclerView;
     private List<YwyBean> mYwyBeanList = new ArrayList<>();
@@ -42,6 +42,12 @@ public class InviteFragment extends BaseFragment {
         initView();
 
         return mParentView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        isViewInitFinished = true;
     }
 
     private void initView() {
@@ -105,9 +111,12 @@ public class InviteFragment extends BaseFragment {
     }
 
     private void getData() {
-        for (int i = 0; i < 10; i++) {
-            mYwyBeanList.add(new YwyBean("Ywy : " + i, " " + i));
-            BaseLog.logE(TAG, "getData i : " + i);
+        BaseLog.logD(TAG,"isViewInitFinished : "+isViewInitFinished);
+        if(isViewInitFinished){
+            for (int i = 0; i < 10; i++) {
+                mYwyBeanList.add(new YwyBean("Ywy : " + i, " " + i));
+                BaseLog.logE(TAG, "getData i : " + i);
+            }
         }
     }
 

@@ -15,7 +15,7 @@ import com.ywy.demo.utils.BaseLog;
 public class BaseFragment extends Fragment {
 
     private static final String TAG = BaseFragment.class.getSimpleName();
-
+    public Boolean isViewInitFinished = false;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -39,6 +39,11 @@ public class BaseFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         BaseLog.logV("onActivityCreated");
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
     }
 
     @Override

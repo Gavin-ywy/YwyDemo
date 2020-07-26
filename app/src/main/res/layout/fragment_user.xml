@@ -1,13 +1,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
 
+    <com.ywy.demo.view.CircleImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:border_color="#a0f"
+        app:border_width="2dp"
+        app:corner_radius="10dp"
+        app:is_circle="true"
+        android:src="@mipmap/head" />
+
     <TextView
         android:id="@+id/user_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User_Fragment"/>
+        android:text="User_Fragment" />
 
 </LinearLayout>

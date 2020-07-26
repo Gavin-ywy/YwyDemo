@@ -16,7 +16,7 @@ import com.ywy.demo.bean.YwyBean;
 import java.util.List;
 
 public class InviteAdapter extends RecyclerView.Adapter {
-    private static final String TAG = "Invite";
+    private static final String TAG = InviteAdapter.class.getSimpleName();
     private Context mContext;
     private List<YwyBean> mBeanList;
 
