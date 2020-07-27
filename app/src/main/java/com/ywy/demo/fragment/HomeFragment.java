@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,11 +15,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.ywy.demo.R;
 import com.ywy.demo.activity.LanguageSwitchActivity;
+import com.ywy.demo.activity.NotificationActivity;
 import com.ywy.demo.mvp.MvpActivity;
 import com.ywy.demo.activity.TextureViewActivity;
 import com.ywy.demo.base.BaseFragment;
+import com.ywy.demo.observable.YwyObservable;
 
-public class HomeFragment extends BaseFragment implements View.OnClickListener {
+import java.util.Observable;
+import java.util.Observer;
+
+public class HomeFragment extends BaseFragment implements View.OnClickListener, Observer {
 
     private static final String TAG = HomeFragment.class.getSimpleName();
     private View mParentView;
@@ -27,6 +33,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private Button mTextureView;
     private Button mTextMvp;
     private Button mSwitchLanguage;
+    private Button mNotification;
+    private YwyObservable mYwyObservable;
     //private XRecyclerView recycler_view
 
     @Override
@@ -72,22 +80,41 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mTextMvp.setOnClickListener(this);
         mSwitchLanguage = mParentView.findViewById(R.id.home_switch_language);
         mSwitchLanguage.setOnClickListener(this);
+        mNotification = mParentView.findViewById(R.id.home_switch_notification);
+        mNotification.setOnClickListener(this);
+    }
+
+    private void initObservable(){
+        mYwyObservable = YwyObservable.getInstance();
+        mYwyObservable.addObserver(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.home_textureView:
-                startActivity(new Intent(getActivity(), TextureViewActivity.class));
+                startActivitys(TextureViewActivity.class);
                 break;
             case R.id.home_mvp:
-                startActivity(new Intent(getActivity(), MvpActivity.class));
+                startActivitys(MvpActivity.class);
                 break;
             case R.id.home_switch_language:
-                startActivity(new Intent(getActivity(), LanguageSwitchActivity.class));
+                startActivitys(LanguageSwitchActivity.class);
+                break;
+            case R.id.home_switch_notification:
+                startActivitys(NotificationActivity.class);
                 break;
             default:
                 break;
         }
+    }
+
+    private void startActivitys(Class mClass) {
+        startActivity(new Intent(getActivity(), mClass));
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        Toast.makeText(getActivity(),"Object : "+arg.toString(),Toast.LENGTH_SHORT).show();
     }
 }

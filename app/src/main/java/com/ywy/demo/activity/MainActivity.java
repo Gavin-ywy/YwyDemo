@@ -1,11 +1,17 @@
 package com.ywy.demo.activity;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,11 +20,13 @@ import android.widget.TextView;
 
 import com.ywy.demo.R;
 import com.ywy.demo.base.BaseActivity;
+import com.ywy.demo.base.BaseApplication;
 import com.ywy.demo.utils.BaseLog;
 import com.ywy.demo.fragment.HomeFragment;
 import com.ywy.demo.fragment.InviteFragment;
 import com.ywy.demo.fragment.TaskFragment;
 import com.ywy.demo.fragment.UserFragment;
+import com.ywy.demo.utils.GetLocation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +34,7 @@ import java.util.List;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private String[] permission = {Manifest.permission_group.STORAGE};
     private static final int HOME = 0;
     private static final int INVITE = 1;
     private static final int TASK = 2;
@@ -74,7 +83,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        initPermission();
         initView();
 
     }
@@ -226,6 +235,33 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         @Override
         public int getCount() {
             return fragments.size();
+        }
+    }
+
+    private void initPermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(permission, 100);
+            }
+            return;
+        } else {
+            initLocation();
+        }
+    }
+
+    private void initLocation() {
+        final GetLocation mMyLocationOff = GetLocation.getInstance();
+        final Location locationOff = mMyLocationOff.getLocation(BaseApplication.getContext());
+        if (locationOff != null) {
+            mMyLocationOff.setGetLocationListener(new GetLocation.GetLocationListener() {
+                @Override
+                public void getLocationData(Location location) {
+                    Log.d(TAG,"location : " + location.toString());
+                    mMyLocationOff.setGetLocationListener(null);
+                }
+            });
+        } else {
+            Log.e(TAG, "locationOff is null");
         }
     }
 
